@@ -1,2 +1,2 @@
-# multi-device-runner-proMax
-multi-device-runner-proMax
+# multi-device-runner-pro-max
+multi-device-runner-pro-max

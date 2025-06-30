@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>Airtest Report 报告聚合调试 test_blackjack3.py</title>
+    
+    <!--[if lt IE 9]>
+    <script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/css/report.css" rel="stylesheet">
+
+    <script src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/js/jquery-1.10.2.min.js"></script>
+    <script src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/js/jquery-lang.js" charset="utf-8" type="text/javascript"></script>
+    <script src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/js/langpack/zh_CN.js" charset="utf-8" type="text/javascript"></script>
+    <script src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/js/lazyload.js" charset="utf-8" type="text/javascript"></script>
+    <script type="text/javascript">
+      data = {"steps": [{"title": "Connect device", "time": 1751266631.0505435, "code": {"name": "connect_device", "args": [{"key": "uri", "value": "Android:///66J5T19730001281"}]}, "screen": null, "desc": "\u8fde\u63a5\u8bbe\u5907\uff1a Android:///66J5T19730001281", "traceback": "", "log": "", "assert": null}, {"title": "start_app", "time": 1751266631.4710069, "code": {"name": "start_app", "args": [{"key": "package", "value": "com.benjamin.android"}, {"key": "activity", "value": null}]}, "screen": null, "desc": null, "traceback": "", "log": "", "assert": null}, {"title": "Touch", "time": 1751266644.6485686, "code": {"name": "touch", "args": [{"key": "v", "value": {"filename": "../../ElementsRepo/app/public/\u9152\u5e972.png", "_filepath": null, "threshold": 0.7, "target_pos": 5, "record_pos": null, "resolution": [], "rgb": false, "scale_max": 800, "scale_step": 0.005, "__class__": "Template"}, "image": "D:\\code_path\\Python\\AUI\\ElementsRepo\\app\\public\\\u9152\u5e972.png", "resolution": [55, 51]}, {"key": "kwargs", "value": {}}, {"key": "times", "value": 1}]}, "screen": {"src": "D:\\code_path\\Python\\AUI\\AIairtestDemo\\testDoMergeReport\\logs\\66J5T19730001281_test_blackjack3\\1751266640648.jpg", "rect": [{"left": 21, "top": 335, "width": 201, "height": 188}], "pos": [[121, 429]], "vector": [], "confidence": 0.9662030041217804, "resolution": [1080, 2244], "_filepath": "D:\\code_path\\Python\\AUI\\AIairtestDemo\\testDoMergeReport\\logs\\66J5T19730001281_test_blackjack3\\1751266640648.jpg", "thumbnail": "D:\\code_path\\Python\\AUI\\AIairtestDemo\\testDoMergeReport\\logs\\66J5T19730001281_test_blackjack3\\1751266640648_small.jpg"}, "desc": "\u70b9\u51fb \u76ee\u6807\u56fe\u7247", "traceback": "", "log": "", "assert": null}], "name": "test_blackbenjamin.air\\log\\66J5T19730001281", "scale": 0.5, "test_result": true, "run_end": 1751266644.6485686, "run_start": 1751266630.451395, "static_root": "D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/", "lang": "zh", "records": [], "info": {"name": "test_blackjack3.py", "path": "test_blackbenjamin.air\\log\\66J5T19730001281\\test_blackjack3.py", "author": "Benjamin", "title": "\u62a5\u544a\u805a\u5408\u8c03\u8bd5 test_blackjack3.py", "desc": "\u6d4b\u8bd5\u70b9\uff1atest_blackjack3.py\n1\u3001\u542f\u52a8APP\n2\u3001\u70b9\u51fb\u516c\u5171\u9996\u9875\u9152\u5e97\u6309\u94ae\n3\u3001\u70b9\u51fb\u9152\u5e97\u9996\u9875\u67e5\u627e\u9152\u5e97", "devices": {"66J5T19730001281": "Android:///66J5T19730001281"}}, "log": "log.txt", "console": ""};
+      lang = new Lang();
+      lang.init({
+        defaultLang: 'en',
+        currentLang: 'zh'
+      });
+    </script>
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        
+        <div id="main" class="main col-md-12">
+          <div id="back_multi"></div>
+          <h1 class="title">Airtest Report 报告聚合调试 test_blackjack3.py</h1>
+          
+          <div class="summary" >
+
+            <div class="show-vertical">
+              <div class="info info1">
+                <div class="info-left">
+                  <img id='result-img' />
+                </div>
+                <div class="info-right">
+                  <div class="info-title"><span lang='en'>Airtest Report</span>
+                    <label id='result-desc' lang="en"></label>
+                  </div>
+                  <div class="info-content">
+                    <div class='info-sub start'></div>
+                    <div class='info-sub time'></div>
+                  </div>
+                  <div class="info-toal">
+                    <div class="info-step">
+                      <span class="info-name" lang="en">Steps: </span>
+                      <span class="info-value">3</span>
+                    </div>
+                    <div class="info-time">
+                      <span class="info-name" lang="en">Time: </span>
+                      <span class="info-value duration">xxx</span>
+                    </div>
+                    
+                    
+                    <div class="info-log">
+                      <span class="info-name" lang="en">Log: </span>
+                      <span class="info-value log">
+                        <a href="log.txt" target="_blank" download="log.txt">log.txt <img src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/download_log.svg" /></a>
+                      </span>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="info info2">
+                <div class="info-left"></div>
+                <div class="info-right">
+                  <div class="info-title"><span lang='en'>Executors</span></div>
+                  <div class="info-content">
+                    <div class="info-execute">
+                      <div class="circle-img"></div>
+                      
+                        <div class="info-name"><span lang="en">Author:</span> Benjamin</div>
+                      
+                    </div>
+                    <div class="info-execute">
+                      <div class="circle-img"></div>
+                      <div class="info-file" title="test_blackbenjamin.air\log\66J5T19730001281\test_blackjack3.py">test_blackjack3.py
+                        <img id="copy_path" class="copy-img" data-value="test_blackbenjamin.air\log\66J5T19730001281\test_blackjack3.py" title="copy file path to clipboard" src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/copy.svg" />
+                      </div>
+                    </div>
+
+                    
+                    <div class="info-execute">
+                      <div class="circle-img"></div>
+                      
+                      <div class="info-file" title="Android:///66J5T19730001281"><span lang="en">Device: </span> 66J5T19730001281
+                        <img class="copy-img" title="copy file path to clipboard" src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/copy.svg" data-value="Android:///66J5T19730001281"/>
+                      </div>
+                    </div>
+                    
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="info info3">
+              <div class="info-title" lang="en">Description:</div>
+              <div class="airdesc-wrap">
+                  <div class="airdesc">
+                    <div class="desc-content">测试点：test_blackjack3.py
+1、启动APP
+2、点击公共首页酒店按钮
+3、点击酒店首页查找酒店</div>
+                    <div class="show-more"></div>
+                  </div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="device" id='device'>
+          </div>
+          <!-- 可以额外显示自定义模块，支持插入Html内容 -->
+          
+          <div class="gallery">
+            <div class="info-title"><span lang="en">Quick view</span></div>
+            <div class ='placeholder'>
+              <div class="content">
+              </div>
+            </div>
+          </div>
+
+          <!--单步-->
+          
+          
+          <div class="steps">
+            <div class="content">
+              <div class="steps-head">
+                <div class="head-left">
+                  <div class="order" id='order'><span lang="en">order</span></div>
+                  <div class="order" id='duration'><span lang="en">duration</span></div>
+                  <div class="order" id='status'><span lang="en">status</span></div>
+                </div>
+                <div class="head-right">
+                  <span lang="en" class="jump-wrong" id='jump-wrong'>Jump to wrong step</span>
+                  <span lang="en">Filter by:</span>
+                  <span class="filters">
+                    <span lang="en" class="filter" id="all" alt="show all steps">All</span>
+                    <span lang="en" class="filter" id='success' alt="show success steps only">Success</span>
+                    <span lang="en" class="filter" id='fail' alt="show failed steps only">Failed</span>
+                    <span lang="en" class="filter" id="assert" alt="show steps with assertion only">Assert</span>
+                  </span>
+                </div>
+              </div>
+              <div class="steps-content">
+                <div class="step-left" id='step-left'>
+                  <div class="step-list"></div>
+                  <div id="pageTool"></div>
+                </div>
+                <div class="step-right" id='step-right'></div>
+              </div>
+            </div>
+            
+            </div>
+        </div>
+        
+      
+      <div class="footer">
+        <div class="footer-content">
+          <div class="foo">
+            <div class="interfaces">
+              <a class="icon" href="https://github.com/AirtestProject/Airtest"  target="_blank">
+                <img src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/Airtest.png" alt="airtest">
+              </a>
+              <a class="icon" href="https://github.com/AirtestProject/poco"  target="_blank">
+                <img src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/poco.png" alt="Poco">
+              </a>
+            </div>
+          </div>
+          <div class="foo">
+            <div class="apps">
+              <a class="icon ide" href="http://airtest.netease.com/"  target="_blank">
+                <img src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/AirtestIDE.png" alt="AirtestIDE">
+              </a>
+              <a class="icon" href="https://airlab.163.com/"  target="_blank">
+                <img src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/AirLab.png" alt="AirLab">
+              </a>
+            </div>
+          </div>
+          <div class="foo">
+            <div class="corp">
+                <img src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/netease.png" alt="NetEase">
+                <span lang="en">© 1997 - 2020 NetEase, Inc. All Rights Reserved.</span>
+            </div>
+          </div>
+        </div>
+      </div> 
+      
+      </div>
+      <!-- 录屏 -->
+      <div class="row gif-wrap show">
+          <div class="menu">
+            <div class="pattern pattern1">
+              <div class="minimize">
+                <img title="minimize" src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/minimize.svg" />
+              </div>
+              <div class="close">
+                <img title="close" src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/close.svg" />
+              </div>
+            </div>
+            <div class="pattern pattern2">
+              <div class="maximize">
+                <img title="maximize" src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/image/maximize.svg" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            
+          </div>
+        </div>
+        <!-- max pic -->
+      <div id='magnify' class="mask hide">
+        <div class="content">
+        </div>
+      </div>
+    </div>
+
+  <link href="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/css/monokai_sublime.min.css" rel="stylesheet">
+  <script src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/js/highlight.min.js"></script>
+  <script type="text/javascript" src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/js/paging.js"></script>
+  <script src="D:/code_path/VA_Python312/omni/Lib/site-packages/airtest/report/js/report.js"></script>
+</body>
+</html>

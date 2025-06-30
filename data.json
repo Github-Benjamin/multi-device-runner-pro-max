@@ -1,0 +1,81 @@
+{
+    "start": 1751266615.4203897,
+    "script": "test_blackbenjamin.air",
+    "tests": {
+        "YWT0222A10000129_test_blackbenjamin": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "test_blackbenjamin.air\\test_blackbenjamin.py",
+                "--log_root",
+                "logs\\YWT0222A10000129_test_blackbenjamin",
+                "--outfile",
+                "logs\\YWT0222A10000129_test_blackbenjamin\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "logs\\YWT0222A10000129_test_blackbenjamin\\log.html"
+        },
+        "YWT0222A10000129_test_blackjack2": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "test_blackbenjamin.air\\log\\test_blackjack2.py",
+                "--log_root",
+                "logs\\YWT0222A10000129_test_blackjack2",
+                "--outfile",
+                "logs\\YWT0222A10000129_test_blackjack2\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "logs\\YWT0222A10000129_test_blackjack2\\log.html"
+        },
+        "YWT0222A10000129_test_blackjack4": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "test_blackbenjamin.air\\log\\YWT0222A10000129\\test_blackjack4.py",
+                "--log_root",
+                "logs\\YWT0222A10000129_test_blackjack4",
+                "--outfile",
+                "logs\\YWT0222A10000129_test_blackjack4\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "logs\\YWT0222A10000129_test_blackjack4\\log.html"
+        },
+        "66J5T19730001281_test_blackjack1": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "test_blackbenjamin.air\\test_blackjack1.py",
+                "--log_root",
+                "logs\\66J5T19730001281_test_blackjack1",
+                "--outfile",
+                "logs\\66J5T19730001281_test_blackjack1\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "logs\\66J5T19730001281_test_blackjack1\\log.html"
+        },
+        "66J5T19730001281_test_blackjack3": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "test_blackbenjamin.air\\log\\66J5T19730001281\\test_blackjack3.py",
+                "--log_root",
+                "logs\\66J5T19730001281_test_blackjack3",
+                "--outfile",
+                "logs\\66J5T19730001281_test_blackjack3\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "logs\\66J5T19730001281_test_blackjack3\\log.html"
+        }
+    }
+}

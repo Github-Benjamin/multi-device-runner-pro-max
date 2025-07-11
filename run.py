@@ -18,7 +18,7 @@ def find_test_files(root_dir):
     result = []
     for root, dirs, files in os.walk(root_dir):
         for file in files:
-            if file.startswith('test_') and file.endswith('.py'):
+            if file.endswith('_test.py'):
                 result.append(os.path.join(root, file))
     return result
 
@@ -134,7 +134,7 @@ def run(devices, air, logs, mode=False, run_all=False):
                 task['airtest_report_cmd'] = airtest_one_report['airtest_report_cmd']
                 results['tests'][task['log_path']] = airtest_one_report
                 results['tests'][task['log_path']]['status'] = status
-                json.dump(results, open('data.json', "w"), indent=4)
+                json.dump(results, open(f'{report_start}_data.json', "w"), indent=4)
         run_summary(results)
         return devices_tasks
     except Exception as e:
@@ -221,9 +221,10 @@ def run_summary(data):
                                          time.localtime(data['start']))
         env = Environment(loader=FileSystemLoader(os.getcwd()), trim_blocks=True)
         html = env.get_template('report_tpl.html').render(data=summary)
-        with open("report.html", "w", encoding="utf-8") as f:
+        report_html = f"{report_start}_report.html"
+        with open(report_html, "w", encoding="utf-8") as f:
             f.write(html)
-        webbrowser.open('report.html')
+        webbrowser.open(report_html)
     except Exception as e:
         traceback.print_exc()
 
@@ -237,7 +238,7 @@ def load_jdon_data(air, logs, run_all):
             if data.json exists and run_all=False, loading progress in data.json
             else return an empty data
     """
-    json_file = os.path.join(os.getcwd(), 'data.json')
+    json_file = os.path.join(os.getcwd(), f'{report_start}_data.json')
     if (not run_all) and os.path.isfile(json_file):
         data = json.load(open(json_file))
         data['start'] = time.time()
@@ -282,7 +283,9 @@ if __name__ == '__main__':
 
     devices = [tmp[0] for tmp in ADB().devices()]
     air = 'test_blackbenjamin.air'
-    logs = "logs"
+
+    report_start = int(time.time() * 1000)
+    logs = f"{report_start}_logs"
 
     # 调试代码
     # devices = ['66J5T19730001281', 'YWT0222A10000129']

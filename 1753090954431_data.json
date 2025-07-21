@@ -1,0 +1,114 @@
+{
+    "start": 1753097688.5302248,
+    "script": "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client",
+    "tests": {
+        "YWT0222A10000129_ai_AIcaseDemo_test": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testAICase\\ai_AIcaseDemo_test.py",
+                "--log_root",
+                "1753090954431_logs\\YWT0222A10000129_ai_AIcaseDemo_test",
+                "--outfile",
+                "1753090954431_logs\\YWT0222A10000129_ai_AIcaseDemo_test\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "1753090954431_logs\\YWT0222A10000129_ai_AIcaseDemo_test\\log.html",
+            "path_time": 1753097876.0218446,
+            "airtest_run_cmd": [
+                "airtest",
+                "run",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testAICase\\ai_AIcaseDemo_test.py",
+                "--device",
+                "Android:///YWT0222A10000129",
+                "--log",
+                "1753090954431_logs\\YWT0222A10000129_ai_AIcaseDemo_test"
+            ],
+            "spend_time": 73.58374261856079
+        },
+        "YWT0222A10000129_ai_AIcaseEasyDemo_test": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testAICase\\ai_AIcaseEasyDemo_test.py",
+                "--log_root",
+                "1753090954431_logs\\YWT0222A10000129_ai_AIcaseEasyDemo_test",
+                "--outfile",
+                "1753090954431_logs\\YWT0222A10000129_ai_AIcaseEasyDemo_test\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "1753090954431_logs\\YWT0222A10000129_ai_AIcaseEasyDemo_test\\log.html",
+            "path_time": 1753097876.6479156,
+            "airtest_run_cmd": [
+                "airtest",
+                "run",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testAICase\\ai_AIcaseEasyDemo_test.py",
+                "--device",
+                "Android:///YWT0222A10000129",
+                "--log",
+                "1753090954431_logs\\YWT0222A10000129_ai_AIcaseEasyDemo_test"
+            ],
+            "spend_time": 19.832978010177612
+        },
+        "YWT0222A10000129_AlipayGphone_Tmapi_Client_Pro_test": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testCase\\AlipayGphone_Tmapi_Client_Pro_test.py",
+                "--log_root",
+                "1753090954431_logs\\YWT0222A10000129_AlipayGphone_Tmapi_Client_Pro_test",
+                "--outfile",
+                "1753090954431_logs\\YWT0222A10000129_AlipayGphone_Tmapi_Client_Pro_test\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "1753090954431_logs\\YWT0222A10000129_AlipayGphone_Tmapi_Client_Pro_test\\log.html",
+            "path_time": 1753097877.439148,
+            "airtest_run_cmd": [
+                "airtest",
+                "run",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testCase\\AlipayGphone_Tmapi_Client_Pro_test.py",
+                "--device",
+                "Android:///YWT0222A10000129",
+                "--log",
+                "1753090954431_logs\\YWT0222A10000129_AlipayGphone_Tmapi_Client_Pro_test"
+            ],
+            "spend_time": 72.75040578842163
+        },
+        "YWT0222A10000129_AlipayGphone_Tmapi_Client_test": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testCase\\AlipayGphone_Tmapi_Client_test.py",
+                "--log_root",
+                "1753090954431_logs\\YWT0222A10000129_AlipayGphone_Tmapi_Client_test",
+                "--outfile",
+                "1753090954431_logs\\YWT0222A10000129_AlipayGphone_Tmapi_Client_test\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "1753090954431_logs\\YWT0222A10000129_AlipayGphone_Tmapi_Client_test\\log.html",
+            "path_time": 1753097878.0546644,
+            "airtest_run_cmd": [
+                "airtest",
+                "run",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testCase\\AlipayGphone_Tmapi_Client_test.py",
+                "--device",
+                "Android:///YWT0222A10000129",
+                "--log",
+                "1753090954431_logs\\YWT0222A10000129_AlipayGphone_Tmapi_Client_test"
+            ],
+            "spend_time": 20.51213812828064
+        }
+    },
+    "data_json": "1753090954431_data.json",
+    "report_html": "1753090954431_report.html",
+    "end": 1753097878.0546644,
+    "spend_time": 189.52443957328796
+}

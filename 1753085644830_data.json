@@ -1,0 +1,36 @@
+{
+    "start": 1753097878.179015,
+    "script": "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testAICase\\ai_AIcaseEasyDemo_test.py",
+    "tests": {
+        "YWT0222A10000129_ai_AIcaseEasyDemo_test": {
+            "airtest_report_cmd": [
+                "airtest",
+                "report",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testAICase\\ai_AIcaseEasyDemo_test.py",
+                "--log_root",
+                "1753085644830_logs\\YWT0222A10000129_ai_AIcaseEasyDemo_test",
+                "--outfile",
+                "1753085644830_logs\\YWT0222A10000129_ai_AIcaseEasyDemo_test\\log.html",
+                "--lang",
+                "zh"
+            ],
+            "status": 0,
+            "path": "1753085644830_logs\\YWT0222A10000129_ai_AIcaseEasyDemo_test\\log.html",
+            "path_time": 1753097899.3432052,
+            "airtest_run_cmd": [
+                "airtest",
+                "run",
+                "D:\\code_path\\Python\\AUI\\Tests\\Tmapi-Client\\testAICase\\ai_AIcaseEasyDemo_test.py",
+                "--device",
+                "Android:///YWT0222A10000129",
+                "--log",
+                "1753085644830_logs\\YWT0222A10000129_ai_AIcaseEasyDemo_test"
+            ],
+            "spend_time": 20.44507884979248
+        }
+    },
+    "data_json": "1753085644830_data.json",
+    "report_html": "1753085644830_report.html",
+    "end": 1753097899.3432052,
+    "spend_time": 21.1641902923584
+}

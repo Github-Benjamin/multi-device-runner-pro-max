@@ -15,12 +15,22 @@ from jinja2 import Environment, FileSystemLoader
 
 # 获取指定目录的被测文件列表，以"xx"（test_）前缀为准，xx结尾的文件为测试用例，未考虑重名文件
 def find_test_files(root_dir):
+    """识别测试文件，自动处理文件和目录两种输入"""
     result = []
-    for root, dirs, files in os.walk(root_dir):
-        for file in files:
-            if file.endswith('_test.py'):
-                result.append(os.path.join(root, file))
-    return result
+
+    if os.path.isfile(root_dir):
+        # 处理单个文件情况
+        if root_dir.endswith('_test.py'):
+            return [root_dir]
+        return []
+
+    elif os.path.isdir(root_dir):
+        # 处理目录情况
+        for root, _, files in os.walk(root_dir):
+            for file in files:
+                if file.endswith('_test.py'):
+                    result.append(os.path.join(root, file))
+        return result
 
 
 # 动态负载均衡设备执行脚本
@@ -99,12 +109,13 @@ def execute_concurrent_airtest_run(devices_tasks):
     """
     def airtest_run_cme(device):
         for device_info in devices_tasks[device]:
-            cmd = device_info["airtest_run_cmd"]
-            device_info["start_time"] = time.time()
-            status = subprocess.call(cmd, shell=True, cwd=os.getcwd())
-            device_info["status"] = status
-            device_info["end_time"] = time.time()
-            device_info["spend_time"] = device_info["end_time"] - device_info["start_time"]
+            cmd = device_info.get("airtest_run_cmd", None)
+            if cmd:
+                device_info["start_time"] = time.time()
+                status = subprocess.call(cmd, shell=True, cwd=os.getcwd())
+                device_info["status"] = status
+                device_info["end_time"] = time.time()
+                device_info["spend_time"] = device_info["end_time"] - device_info["start_time"]
 
     producer_tasks = []
     producer_pool = Pool(size=len(devices_tasks))
@@ -115,7 +126,7 @@ def execute_concurrent_airtest_run(devices_tasks):
     return devices_tasks
 
 
-def run(devices, air, logs, mode=False, run_all=False):
+def run(devices, air, report_start, mode=False, run_all=False):
     """"
         mode
             = True: 兼容模式，多台设备并行，单设备脚本串行，每个脚本只执行设备数据的次数
@@ -125,18 +136,23 @@ def run(devices, air, logs, mode=False, run_all=False):
             = False: 续着data.json的进度继续测试 (continue test with the progress in data.jason)
     """
     try:
-        results = load_jdon_data(air, logs, run_all)
+        logs = f"{report_start}_logs"
+        results = load_jdon_data(air, logs, report_start, run_all)
         devices_tasks = run_on_multi_device(devices, air, logs, results, mode, run_all)
         for device in devices_tasks:
             for task in devices_tasks[device]:
-                status = task["status"]
-                airtest_one_report = run_one_report(task['py_path'], logs, task['log_path'])
-                task['airtest_report_cmd'] = airtest_one_report['airtest_report_cmd']
-                results['tests'][task['log_path']] = airtest_one_report
-                results['tests'][task['log_path']]['status'] = status
-                json.dump(results, open(f'{report_start}_data.json', "w"), indent=4)
-        run_summary(results)
-        return devices_tasks
+                status = task.get("status", "no value")
+                if status != "no value":
+                    airtest_one_report = run_one_report(task['py_path'], logs, task['log_path'])
+                    airtest_one_report["airtest_run_cmd"] = task["airtest_run_cmd"]
+                    airtest_one_report["spend_time"] = task["spend_time"]
+                    results['tests'][task['log_path']] = airtest_one_report
+                    results['tests'][task['log_path']]['status'] = status
+        results['end'] = time.time()
+        results['spend_time'] = results['end'] - results['start']
+        json.dump(results, open(f'{report_start}_data.json', "w"), indent=4)
+        run_summary(results, report_start)
+        return results
     except Exception as e:
         traceback.print_exc()
 
@@ -147,16 +163,16 @@ def run_on_multi_device(devices, air, logs, results, mode, run_all):
         Run airtest on multi-device-runner-pro-max
     """
     devices_tasks = map_tasks(devices, air, mode)
+    airtest_run_num = 0
     for device in devices_tasks:
         for device_tasks in devices_tasks[device]:
             dev = device_tasks["log_path"]
-            if (not run_all and results['tests'].get(dev) and
-               results['tests'].get(dev).get('status') == 0):
+            if (not run_all and results['tests'].get(dev) and results['tests'].get(dev).get('status') == 0):
                 print("Skip device %s" % dev)
                 continue
             else:
                 log_dir = get_log_dir(dev, logs)
-                cmd = [
+                airtest_run_cmd = [
                     "airtest",
                     "run",
                     device_tasks["py_path"],
@@ -165,7 +181,11 @@ def run_on_multi_device(devices, air, logs, results, mode, run_all):
                     "--log",
                     log_dir
                 ]
-                device_tasks["airtest_run_cmd"] = cmd
+                device_tasks["airtest_run_cmd"] = airtest_run_cmd
+                airtest_run_num += 1
+
+    if airtest_run_num == 0:
+        return devices_tasks
 
     # 多设备并行执行 airtest_run_cmd
     devices_tasks = execute_concurrent_airtest_run(devices_tasks)
@@ -196,16 +216,17 @@ def run_one_report(air, logs, dev):
             return {
                     'airtest_report_cmd': airtest_report_cmd,
                     'status': ret,
-                    'path': os.path.join(log_dir, 'log.html')
+                    'path': os.path.join(log_dir, 'log.html'),
+                    'path_time': time.time(),
             }
         else:
             print("Report build Failed. File not found in dir %s" % log)
     except Exception as e:
         traceback.print_exc()
-    return {'status': -1, 'device': dev, 'path': '', 'airtest_report_cmd': ''}
+    return {'status': -1, 'device': dev, 'path': '', 'path_time': time.time(), 'airtest_report_cmd': ''}
 
 
-def run_summary(data):
+def run_summary(data, report_start):
     """"
         生成汇总的测试报告
         Build sumary test report
@@ -217,8 +238,7 @@ def run_summary(data):
             'count': len(data['tests'])
         }
         summary.update(data)
-        summary['start'] = time.strftime("%Y-%m-%d %H:%M:%S",
-                                         time.localtime(data['start']))
+        summary['start'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(data['start']))
         env = Environment(loader=FileSystemLoader(os.getcwd()), trim_blocks=True)
         html = env.get_template('report_tpl.html').render(data=summary)
         report_html = f"{report_start}_report.html"
@@ -229,7 +249,7 @@ def run_summary(data):
         traceback.print_exc()
 
 
-def load_jdon_data(air, logs, run_all):
+def load_jdon_data(air, logs, report_start, run_all):
     """"
         加载进度
             如果data.json存在且run_all=False，加载进度
@@ -248,8 +268,9 @@ def load_jdon_data(air, logs, run_all):
         return {
             'start': time.time(),
             'script': air,
-            'tests': {}
-
+            'tests': {},
+            'data_json': f'{report_start}_data.json',
+            'report_html': f'{report_start}_report.html'
         }
 
 
@@ -275,28 +296,55 @@ def get_log_dir(device, logs):
     return log_dir
 
 
+def run_all_route_test_case(air, devices=None, mode=False, report_start_data=None):
+    """
+        air
+            传入用例目录，扫描目录中的 _test.py 命名结尾的文件
+            传入用例文件，需以 _test.py 命名结尾的用例
+        devices
+            传入可用设备列表 ['66J5T19730001281', 'YWT0222A10000129']，adb指定设备运行
+            不传入，默认获取已连接设备
+        mode
+            = True: 兼容模式，多台设备并行，单设备脚本串行，每个脚本只执行设备数据的次数
+            = False: 负载均衡模式，多台设备并行，单设备脚本串行，每个脚本只执行1次
+        report_start_data
+            传入断点续跑 或 重试失败的用例，传入 1753085644830_data.json 记录用例执行报告的数据
+    """
+    if air is None:
+        return False
+
+    if devices is None:
+        devices = [tmp[0] for tmp in ADB().devices()]
+
+    if report_start_data is None:
+        report_start = int(time.time() * 1000)
+        run_all = True
+    else:
+        report_start = report_start_data.split("_")[0]
+        run_all = False
+
+    devices_tasks = run(devices, air, report_start, mode=mode, run_all=run_all)
+    return devices_tasks
+
+
+
 if __name__ == '__main__':
     """
         初始化数据
         Init variables here
     """
 
-    devices = [tmp[0] for tmp in ADB().devices()]
-    air = 'test_blackbenjamin.air'
-
-    report_start = int(time.time() * 1000)
-    logs = f"{report_start}_logs"
-
     # 调试代码
     # devices = ['66J5T19730001281', 'YWT0222A10000129']
-
-    # Continue tests saved in data.json
-    # Skip scripts that run succeed
-    # 基于data.json的进度，跳过已运行成功的脚本
-    # run(devices, air)
+    air = r'D:\code_path\Python\AUI\Tests\Tmapi-Client'
 
     # Resun all script
-    # 重新运行所有脚本
-    devices_tasks = run(devices, air, logs, mode=False, run_all=True)
+    devices_tasks = run_all_route_test_case(air, report_start_data="1753090954431_data.json")
 
-    print(devices_tasks)
+
+    # Continue tests saved in xxxx_data.json
+    # Skip scripts that run succeed
+    # 基于{report_start}_data.json的进度，跳过已运行成功的脚本
+    air = r'D:\code_path\Python\AUI\Tests\Tmapi-Client\testAICase\ai_AIcaseEasyDemo_test.py'
+    # run_all_route_test_case(air, devices=None, mode=True, report_start_data="1752648916360_data.json")
+    devices_tasks = run_all_route_test_case(air, mode=False, report_start_data="1753085644830_data.json")
